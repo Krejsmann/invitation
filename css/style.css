@@ -1,0 +1,497 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
+  background: #000000;
+}
+
+button {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.main-content{
+  visibility: hidden;
+  transform: translateX(-100%);
+}
+
+.main-content.active{
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.envelope-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 20% 30%, #8B0000 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, #FF0000 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, #DC143C 0%, transparent 50%),
+    linear-gradient(45deg, #000000 0%, #1a0000 100%);
+}
+
+.envelope-background.hidden{
+  visibility: hidden;
+  display: none;
+}
+
+
+/* Сложные сердечки */
+.heart {
+  position: absolute;
+  background: #8B0000;
+  opacity: 0.15;
+}
+
+.heart:before,
+.heart:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #8B0000;
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -50%;
+  left: 0;
+}
+
+.heart:after {
+  top: 0;
+  left: 50%;
+}
+
+.heart-1 {
+  width: 80px;
+  height: 80px;
+  top: 15%;
+  left: 10%;
+  transform: rotate(45deg);
+  animation: floatHeart 8s ease-in-out infinite;
+}
+
+.heart-2 {
+  width: 120px;
+  height: 120px;
+  top: 65%;
+  right: 15%;
+  transform: rotate(-25deg);
+  opacity: 0.1;
+  animation: floatHeart 10s ease-in-out infinite 2s;
+}
+
+.heart-3 {
+  width: 60px;
+  height: 60px;
+  bottom: 25%;
+  left: 20%;
+  transform: rotate(15deg);
+  animation: floatHeart 6s ease-in-out infinite 1s;
+}
+
+/* Вензели и орнаменты */
+.ornament {
+  position: absolute;
+  opacity: 0.2;
+  border: 2px solid #FF0000;
+}
+
+.ornament-1 {
+  top: 10%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+
+.ornament-2 {
+  bottom: 10%;
+  right: 5%;
+  width: 120px;
+  height: 120px;
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(-45deg);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+}
+
+/* Спиральные элементы */
+.spiral {
+  position: absolute;
+  opacity: 0.15;
+}
+
+.spiral-1 {
+  top: 20%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid transparent;
+  border-top: 3px solid #DC143C;
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+}
+
+.spiral-1:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid transparent;
+  border-top: 2px solid #8B0000;
+  border-radius: 50%;
+}
+
+/* Геометрические узоры */
+.geometric {
+  position: absolute;
+  background: linear-gradient(45deg, #FF0000, #8B0000);
+  opacity: 0.1;
+}
+
+.diamond-1 {
+  top: 30%;
+  left: 15%;
+  width: 80px;
+  height: 80px;
+  transform: rotate(45deg);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.diamond-2 {
+  bottom: 30%;
+  right: 20%;
+  width: 60px;
+  height: 60px;
+  transform: rotate(45deg);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.15;
+}
+
+/* Волнистые линии */
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 100px;
+  opacity: 0.05;
+  background: linear-gradient(90deg, transparent, #FF0000, transparent);
+  animation: waveMove 15s linear infinite;
+}
+
+.wave-1 {
+  top: 25%;
+  left: -50%;
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  top: 60%;
+  left: -50%;
+  animation-delay: 5s;
+}
+
+/* Конверт углы */
+.envelope-corner {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 3px solid #8B0000;
+  opacity: 0.3;
+}
+
+.corner-tl {
+  top: -100px;
+  left: -100px;
+  border-right: none;
+  border-bottom: none;
+  border-top: 3px solid #FF0000;
+  border-left: 3px solid #FF0000;
+}
+
+.corner-tr {
+  top: -100px;
+  right: -100px;
+  border-left: none;
+  border-bottom: none;
+  border-top: 3px solid #FF0000;
+  border-right: 3px solid #FF0000;
+}
+
+.corner-bl {
+  bottom: -100px;
+  left: -100px;
+  border-right: none;
+  border-top: none;
+  border-bottom: 3px solid #FF0000;
+  border-left: 3px solid #FF0000;
+}
+
+.corner-br {
+  bottom: -100px;
+  right: -100px;
+  border-left: none;
+  border-top: none;
+  border-bottom: 3px solid #FF0000;
+  border-right: 3px solid #FF0000;
+}
+
+/* Печати с узорами */
+.seal {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  border: 2px dashed #DC143C;
+}
+
+.seal-1 {
+  width: 100px;
+  height: 100px;
+  top: 70%;
+  left: 10%;
+  background: radial-gradient(circle, #8B0000 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.seal-2 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  right: 20%;
+  background: conic-gradient(#FF0000, #8B0000, #DC143C, #FF0000);
+  animation: rotate 10s linear infinite;
+}
+
+/* Центральный контент */
+.convert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  animation: pov 2.5s linear infinite;
+  transition: 0.3s;
+}
+
+.convert-img {
+  position: relative;
+  display: inline-block;
+}
+
+.convert-text-btn {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+}
+
+.convert-btn {
+  padding: 8px;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: #171717;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  font-size: 14px;
+  white-space: nowrap;
+  top: 43px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  left: 20px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.convert-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.convert-btn:hover {
+  background-color: white;
+  color: #171717;
+  box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+}
+
+/* Анимации */
+@keyframes floatHeart {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(45deg) translateY(-20px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pov {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-10deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Блестки */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #FF0000;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+  top: 30%;
+  left: 25%;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  top: 60%;
+  right: 30%;
+  animation-delay: 1s;
+}
+
+.sparkle-3 {
+  bottom: 40%;
+  left: 40%;
+  animation-delay: 2s;
+}
+
+.sparkle-4 {
+  bottom: 70%;
+  left: 40%;
+  animation-delay: 2s;
+}
+
+.sparkle-5 {
+  bottom: 10%;
+  left: 30%;
+  animation-delay: 0.3s;
+}
+
+.sparkle-6 {
+  bottom: 15%;
+  left: 26%;
+  animation-delay: 1s;
+}
+
+.sparkle-7 {
+  bottom: 90%;
+  left: 50%;
+  animation-delay: 3s;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media(max-width: 2000px) {
+  .convert img {
+    width: 800px;
+    height: 400px;
+  }
+}
+
+@media(max-width: 460px){
+  .convert img{
+    width: 600px;
+    height: 300px;
+  }
+  .convert-text-btn{
+    left: 39%;
+  }
+  .convert-btn {
+    padding: 5px;
+    font-size: 11px;
+    top: 34px;
+    left: 25px;
+  }
+  .convert p{
+    font-size: 28px;
+  }
+}
