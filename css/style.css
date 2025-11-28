@@ -491,7 +491,7 @@ body {
   text-align: center;
   padding-top: 30px;
   color: white;
-  max-width: 400px;
+  max-width: 300px;
   margin: 0 auto;
 }
 
@@ -540,6 +540,7 @@ body {
 .description img {
   height: 680px;
   width: 100%;
+  object-fit: cover;
 }
 
 
@@ -726,6 +727,8 @@ body {
 
   .description {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -751,9 +754,14 @@ body {
   }
 
   .countdown-timer {
-    gap: 10px;
+    gap: 5px;
   }
 
+  .countdown-container{
+     align-self: flex-start;
+     padding: 0;
+  }
+  
   .countdown-item {
     min-width: 70px;
     padding: 10px;
