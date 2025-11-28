@@ -658,33 +658,54 @@ body {
   animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-  .music-btn{
-    position: fixed;
-    bottom: 6%;
-    right: 3%;
-    background-color: rgb(161, 7, 7);
-    border: 1px solid white;
-    border-radius: 40px;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    animation: sc 1.5s ease-in-out infinite;
-  }
+.music-btn {
+  position: fixed;
+  bottom: 6%;
+  right: 3%;
+  background-color: rgb(161, 7, 7);
+  border: 1px solid white;
+  border-radius: 40px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  animation: sc 1.5s ease-in-out infinite;
+}
 
-  .music-btn img{
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    height: 20px;
-    width: 20px;
-  }
+.music-btn img {
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 20px;
+  width: 20px;
+}
 
+.date-absolute {
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 500px;
+  /* Фиксированный размер */
+  color: rgba(43, 42, 42, 0.185);
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  font-family: "Great Vibes", cursive;
+  text-align: center;
+  white-space: nowrap;
 
-@keyframes sc{
+}
+
+@keyframes sc {
   0% {}
-  50% {transform: scale(1.2)}
+
+  50% {
+    transform: scale(1.2)
+  }
+
   100% {}
 }
+
 @keyframes heartbeat {
   0%, 100% {
     transform: scale(1);
@@ -727,15 +748,23 @@ body {
     width: 100%;
     margin: 0 auto;
   }
+
+  .date-absolute {
+    font-size: 320px;
+  }
+
   .section__hello-text {
-  max-width: 300px;
-}
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 768px) {
-    .music-btn{
+  .music-btn {
     height: 30px;
     width: 30px;
+  }
+   .date-absolute {
+    font-size: 250px;
   }
   .countdown-item {
     min-width: 80px;
@@ -771,6 +800,10 @@ body {
     width: 600px;
     height: 300px;
   }
+   .date-absolute {
+    top: 8%;
+    font-size: 180px;
+  }
 
   .convert-text-btn {
     left: 39%;
@@ -791,11 +824,11 @@ body {
     gap: 5px;
   }
 
-  .countdown-container{
-     align-self: flex-start;
-     padding: 0;
+  .countdown-container {
+    align-self: flex-start;
+    padding: 0;
   }
-  
+
 
   .countdown-item {
     min-width: 70px;
