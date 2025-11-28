@@ -15,13 +15,15 @@ body {
 .main-content {
   visibility: hidden;
   transform: translateX(-100%);
-  height: 100vh;
+
   width: 100%;
   margin: 0;
   padding: 0;
   max-width: 1400px;
   margin: 0 auto;
-    overflow-x: hidden
+  overflow-x: hidden;
+  min-height: 100vh;
+  /* меняем height на min-height */
 }
 
 .main-content.active {
@@ -489,6 +491,8 @@ body {
   text-align: center;
   padding-top: 30px;
   color: white;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .description {
@@ -521,6 +525,8 @@ body {
   font-style: normal;
   opacity: 0;
   transition: opacity 0.4s;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .title.active {
@@ -543,6 +549,7 @@ body {
   padding: 40px 20px;
   margin: 30px auto;
   max-width: 800px;
+  height: 100vh;
 }
 
 .countdown-title {
@@ -690,6 +697,7 @@ body {
 @media(max-width: 1000px) {
   .description img {
     width: 100%;
+    margin: 0 auto;
   }
 }
 
