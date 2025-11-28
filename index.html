@@ -95,7 +95,7 @@
               <span class="countdown-label">секунд</span>
             </div>
           </div>
-
+          
           <div class="calendar">
             <div class="calendar-header">
               Декабрь 2024
@@ -108,7 +108,7 @@
               <div class="calendar-day">Пт</div>
               <div class="calendar-day">Сб</div>
               <div class="calendar-day">Вс</div>
-
+              
               <!-- Даты декабря -->
               <div class="calendar-date december">1</div>
               <div class="calendar-date december">2</div>
@@ -131,6 +131,17 @@
         </section>
       </div>
     </section>
+  </div>
+  <div class="music-player">
+    <audio id="myAudio" loop>
+      <source src="music/sound.mp3" type="audio/mpeg">
+      <source src="music/background-music.ogg" type="audio/ogg">
+      Ваш браузер не поддерживает аудио элементы.
+    </audio>
+  
+    <button class="music-btn" id="playButton">
+      <img src="images/music/music.png" alt="Play/Pause" id="playIcon" width="30">
+    </button>
   </div>
   <script src="js/main.js"></script>
 </body>

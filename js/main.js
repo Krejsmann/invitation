@@ -6,6 +6,22 @@ window.addEventListener('load', function () {
     const titleElement = document.querySelector('.title')
     const descriptionElement = document.querySelector('.description')
 
+
+    const audio = document.getElementById('myAudio');
+    const playButton = document.getElementById('playButton');
+    const playIcon = document.getElementById('playIcon');
+
+    playButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (audio.paused) {
+            audio.play();
+            playIcon.src = 'images/music/pause.png';
+        } else {
+            audio.pause();
+            playIcon.src = 'images/music/play.png';
+        }
+    });
+
     // Функция печати текста
     function startTyping(text) {
         // const text = 'Приглашение';
@@ -29,7 +45,7 @@ window.addEventListener('load', function () {
     }
 
 
-    function  showDescription(){
+    function showDescription() {
         setTimeout(() => {
             descriptionElement.classList.add('active')
         }, 2800)
@@ -45,6 +61,9 @@ window.addEventListener('load', function () {
                     titleElement.classList.add('active');
                 }, 2500);
                 showDescription()
+                setTimeout(() => {
+                    overlayElement.style.display = "none"
+                }, 1000)
             }
         });
     }
