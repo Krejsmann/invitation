@@ -74,7 +74,7 @@ function textGetter(text) {
 
 // Обратный отсчет до 9 декабря
 function updateCountdown() {
-    const targetDate = new Date('2025-12-08T18:00:00');
+    const targetDate = new Date('2025-12-11T18:00:00');
     const now = new Date();
     const difference = targetDate - now;
 

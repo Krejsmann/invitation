@@ -9,7 +9,7 @@ body {
   font-weight: 400;
   font-style: normal;
   background-color: #5f0505;
-
+  overflow-x: hidden;
 }
 
 .main-content {
@@ -497,7 +497,7 @@ body {
   transition: opacity 0.4s;
 }
 
-.description.active{
+.description.active {
   opacity: 1;
 }
 
@@ -522,7 +522,7 @@ body {
   transition: opacity 0.4s;
 }
 
-.title.active{
+.title.active {
   opacity: 1;
 }
 
@@ -643,8 +643,8 @@ body {
 /* Анимированное сердечко */
 .heart-animation {
   position: absolute;
-  top: -15px;
-  right: -10px;
+  bottom: 42px;
+  right: 100px;
   font-size: 1.5em;
   animation: heartbeat 1.5s ease-in-out infinite;
 }
@@ -679,8 +679,9 @@ body {
   .description img {
     width: 100%;
   }
-  .description{
-    display:flex;
+
+  .description {
+    display: flex;
     flex-direction: row;
   }
 }
@@ -690,6 +691,7 @@ body {
     width: 100%;
   }
 }
+
 @media (max-width: 768px) {
   .countdown-item {
     min-width: 80px;
@@ -700,6 +702,10 @@ body {
     font-size: 2em;
   }
 
+  .countdown-container {
+    margin-top: 0;
+  }
+
   .calendar {
     max-width: 350px;
     padding: 20px;
@@ -708,7 +714,8 @@ body {
   .calendar-date {
     padding: 8px;
   }
-  .description{
+
+  .description {
     flex-direction: column;
   }
 }
@@ -749,5 +756,20 @@ body {
 
   .calendar {
     max-width: 350px;
+  }
+
+  .title {
+    font-size: 24px;
+    padding-top: 20px;
+  }
+
+  .section__hello-text {
+    padding-top: 10px;
+    font-size: 24px;
+  }
+
+  .description img {
+    width: 400px;
+    height: 535px;
   }
 }
