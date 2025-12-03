@@ -550,7 +550,7 @@ body {
   padding: 40px 20px;
   margin: 30px auto;
   max-width: 800px;
-  height: 100vh;
+  height: auto;
 }
 
 .countdown-title {
@@ -859,5 +859,429 @@ body {
   .description img {
     width: 400px;
     height: 535px;
+  }
+}
+
+
+.dateAndPlace{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.date{
+  font-size: 2.5em;
+  color: #fff;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+iframe{
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+
+.map{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+}
+
+.dateAndPlace__description{
+  font-size: 23px;
+}
+
+
+
+/* Стили для блока опроса */
+.rsvp-section {
+  padding: 60px 20px;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.rsvp-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*background:*/
+  /*        radial-gradient(circle at 20% 10%, rgba(139, 0, 0, 0.2) 0%, transparent 50%),*/
+  /*        radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.15) 0%, transparent 50%);*/
+  z-index: 0;
+}
+
+.rsvp-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.rsvp-title {
+  font-family: "Rubik Mono One", monospace;
+  font-size: 2.5em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.rsvp-subtitle {
+  color: #ffd700;
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  font-family: "Raleway", sans-serif;
+}
+
+.rsvp-form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  color: #5f0505;
+  font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e0a9a9;
+  border-radius: 10px;
+  font-size: 1em;
+  font-family: "Raleway", sans-serif;
+  transition: all 0.3s;
+  background: #fff;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8B0000;
+  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.attendance-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+
+.option-label {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.option-label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.option-yes:hover {
+  background: rgba(220, 20, 60, 0.05);
+  border-color: rgba(220, 20, 60, 0.3);
+}
+
+.option-no:hover {
+  background: rgba(128, 128, 128, 0.05);
+  border-color: rgba(128, 128, 128, 0.3);
+}
+
+.option-maybe:hover {
+  background: rgba(255, 215, 0, 0.05);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* Используем нативные радиокнопки с кастомизацией */
+.option-label input[type="radio"] {
+  width: 22px;
+  height: 22px;
+  margin-right: 15px;
+  cursor: pointer;
+  /* Сброс стандартных стилей */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #8B0000;
+  border-radius: 50%;
+  outline: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.option-yes input[type="radio"] {
+  border-color: #DC143C;
+}
+
+.option-no input[type="radio"] {
+  border-color: #666;
+}
+
+.option-maybe input[type="radio"] {
+  border-color: #ffd700;
+}
+
+/* Стиль для выбранной радиокнопки */
+.option-label input[type="radio"]:checked {
+  border-width: 6px;
+}
+
+.option-yes input[type="radio"]:checked {
+  border-color: #DC143C;
+  background-color: white;
+}
+
+.option-no input[type="radio"]:checked {
+  border-color: #666;
+  background-color: white;
+}
+
+.option-maybe input[type="radio"]:checked {
+  border-color: #ffd700;
+  background-color: white;
+}
+
+/* Альтернативный вариант с внутренней точкой */
+.option-label input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Стиль текста при выборе */
+.option-label input[type="radio"]:checked ~ .option-text {
+  font-weight: 700;
+}
+
+.option-yes input[type="radio"]:checked ~ .option-text {
+  color: #DC143C;
+}
+
+.option-no input[type="radio"]:checked ~ .option-text {
+  color: #666;
+}
+
+.option-maybe input[type="radio"]:checked ~ .option-text {
+  color: #b8860b;
+}
+
+/* Подсветка всей карточки при выборе */
+.option-label input[type="radio"]:checked {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px currentColor;
+}
+
+.option-label input[type="radio"]:checked {
+  border-color: #8B0000;
+}
+
+.option-yes input[type="radio"]:checked {
+  border-color: #DC143C;
+}
+
+.option-no input[type="radio"]:checked {
+  border-color: #666;
+}
+
+.option-maybe input[type="radio"]:checked {
+  border-color: #ffd700;
+}
+
+.option-text {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.option-yes .option-text {
+  color: #DC143C;
+}
+
+.option-no .option-text {
+  color: #666;
+}
+
+.option-maybe .option-text {
+  color: #b8860b;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #8B0000, #DC143C);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(139, 0, 0, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  display: none;
+}
+
+.loader.active {
+  display: block;
+}
+
+.form-message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  display: none;
+}
+
+.form-message.success {
+  background: rgba(46, 204, 113, 0.1);
+  color: #27ae60;
+  border: 2px solid #27ae60;
+  display: block;
+}
+
+.form-message.error {
+  background: rgba(231, 76, 60, 0.1);
+  color: #c0392b;
+  border: 2px solid #c0392b;
+  display: block;
+}
+
+/* Анимация */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .rsvp-section {
+    padding: 40px 15px;
+  }
+
+  .rsvp-title {
+    font-size: 2em;
+  }
+
+  .rsvp-form {
+    padding: 25px;
+  }
+
+  .option-label {
+    padding: 12px;
+  }
+
+  .option-label input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .option-label input[type="radio"]:checked {
+    border-width: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rsvp-title {
+    font-size: 1.8em;
+  }
+
+  .rsvp-subtitle {
+    font-size: 1em;
+  }
+
+  .rsvp-form {
+    padding: 20px;
+  }
+
+  .attendance-options {
+    gap: 10px;
+  }
+
+  .option-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+
+  .option-label input[type="radio"]:checked {
+    border-width: 4px;
+  }
+
+  .option-text {
+    font-size: 1em;
+  }
+
+  .submit-btn {
+    padding: 15px;
+    font-size: 1.1em;
   }
 }

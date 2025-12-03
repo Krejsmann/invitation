@@ -50,6 +50,7 @@ window.addEventListener('load', function () {
             descriptionElement.classList.add('active')
         }, 2800)
     }
+
     // Обработчик клика по кнопке
     if (buttonElement) {
         buttonElement.addEventListener('click', function () {
@@ -116,3 +117,137 @@ function updateCountdown() {
 // Запускаем отсчет сразу
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+
+    // Скрипт для отладки радиокнопок
+    document.addEventListener('DOMContentLoaded', function() {
+    const radioInputs = document.querySelectorAll('input[name="attendance"]');
+
+    radioInputs.forEach(input => {
+    input.addEventListener('change', function(e) {
+    console.log('Выбрано:', this.value);
+    // Снимаем выделение со всех карточек
+    document.querySelectorAll('.option-label').forEach(label => {
+    label.style.borderColor = '';
+});
+
+    // Выделяем выбранную карточку
+    const selectedLabel = this.closest('.option-label');
+    if (selectedLabel) {
+    if (this.value === 'Да') {
+    selectedLabel.style.borderColor = '#DC143C';
+} else if (this.value === 'Нет') {
+    selectedLabel.style.borderColor = '#666';
+} else {
+    selectedLabel.style.borderColor = '#ffd700';
+}
+}
+});
+});
+
+    // Проверяем уже выбранные значения при загрузке
+    const checkedInput = document.querySelector('input[name="attendance"]:checked');
+    if (checkedInput) {
+    checkedInput.dispatchEvent(new Event('change'));
+}
+});
+
+
+
+
+    // Настройка для отправки в Telegram
+    const TELEGRAM_BOT_TOKEN = '8490383477:AAH6qfyBB1C_03Etw8cUipPXMisJgRBLZlk';
+    const TELEGRAM_CHAT_ID = '-1003417175580';
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('rsvpForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loader = document.getElementById('loader');
+    const formMessage = document.getElementById('formMessage');
+    const btnText = submitBtn.querySelector('span');
+
+    form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Валидация формы
+    const name = document.getElementById('guestName').value.trim();
+    const attendance = document.querySelector('input[name="attendance"]:checked');
+    const message = document.getElementById('guestMessage').value.trim();
+
+    if (!name) {
+    showMessage('Пожалуйста, введите ваше имя', 'error');
+    return;
+}
+
+    if (!attendance) {
+    showMessage('Пожалуйста, выберите вариант ответа', 'error');
+    return;
+}
+
+    // Показать loader
+    submitBtn.disabled = true;
+    btnText.style.opacity = '0.5';
+    loader.classList.add('active');
+
+    try {
+    // Формируем сообщение для Telegram
+    const text = `
+🎉 *Новый ответ на приглашение!*
+
+👤 *Имя:* ${name}
+✅ *Присутствие:* ${attendance.value}
+${message ? `💬 *Комментарий:* ${message}` : '💬 *Комментарий:* не указан'}
+📅 *Дата ответа:* ${new Date().toLocaleDateString('ru-RU')}
+      `;
+
+    // Отправка в Telegram
+    await sendToTelegram(text);
+
+    // Показываем успешное сообщение
+    showMessage('Спасибо! Ваш ответ успешно отправлен.', 'success');
+    form.reset();
+
+} catch (error) {
+    console.error('Ошибка отправки:', error);
+    showMessage('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.', 'error');
+} finally {
+    // Скрыть loader
+    submitBtn.disabled = false;
+    btnText.style.opacity = '1';
+    loader.classList.remove('active');
+}
+});
+
+    async function sendToTelegram(text) {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+    const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+},
+    body: JSON.stringify({
+    chat_id: TELEGRAM_CHAT_ID,
+    text: text,
+    parse_mode: 'Markdown',
+    disable_notification: false
+})
+});
+
+    if (!response.ok) {
+    throw new Error('Ошибка отправки в Telegram');
+}
+
+    return await response.json();
+}
+
+    function showMessage(text, type) {
+    formMessage.textContent = text;
+    formMessage.className = `form-message ${type}`;
+
+    // Автоматически скрыть сообщение через 5 секунд
+    setTimeout(() => {
+    formMessage.style.display = 'none';
+}, 5000);
+}
+});
