@@ -119,47 +119,47 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 
-    // Скрипт для отладки радиокнопок
-    document.addEventListener('DOMContentLoaded', function() {
+// Скрипт для отладки радиокнопок
+document.addEventListener('DOMContentLoaded', function() {
     const radioInputs = document.querySelectorAll('input[name="attendance"]');
 
     radioInputs.forEach(input => {
-    input.addEventListener('change', function(e) {
-    console.log('Выбрано:', this.value);
-    // Снимаем выделение со всех карточек
-    document.querySelectorAll('.option-label').forEach(label => {
-    label.style.borderColor = '';
-});
+        input.addEventListener('change', function(e) {
+            console.log('Выбрано:', this.value);
+            // Снимаем выделение со всех карточек
+            document.querySelectorAll('.option-label').forEach(label => {
+                label.style.borderColor = '';
+            });
 
-    // Выделяем выбранную карточку
-    const selectedLabel = this.closest('.option-label');
-    if (selectedLabel) {
-    if (this.value === 'Да') {
-    selectedLabel.style.borderColor = '#DC143C';
-} else if (this.value === 'Нет') {
-    selectedLabel.style.borderColor = '#666';
-} else {
-    selectedLabel.style.borderColor = '#ffd700';
-}
-}
-});
-});
+            // Выделяем выбранную карточку
+            const selectedLabel = this.closest('.option-label');
+            if (selectedLabel) {
+                if (this.value === 'Да') {
+                    selectedLabel.style.borderColor = '#DC143C';
+                } else if (this.value === 'Нет') {
+                    selectedLabel.style.borderColor = '#666';
+                } else {
+                    selectedLabel.style.borderColor = '#ffd700';
+                }
+            }
+        });
+    });
 
     // Проверяем уже выбранные значения при загрузке
     const checkedInput = document.querySelector('input[name="attendance"]:checked');
     if (checkedInput) {
-    checkedInput.dispatchEvent(new Event('change'));
-}
+        checkedInput.dispatchEvent(new Event('change'));
+    }
 });
 
 
 
 
-    // Настройка для отправки в Telegram
-    const TELEGRAM_BOT_TOKEN = '8490383477:AAH6qfyBB1C_03Etw8cUipPXMisJgRBLZlk';
-    const TELEGRAM_CHAT_ID = '-1003417175580';
+// Настройка для отправки в Telegram
+const TELEGRAM_BOT_TOKEN = '8490383477:AAH6qfyBB1C_03Etw8cUipPXMisJgRBLZlk';
+const TELEGRAM_CHAT_ID = '-1003417175580';
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('rsvpForm');
     const submitBtn = document.getElementById('submitBtn');
     const loader = document.getElementById('loader');
@@ -167,31 +167,31 @@ setInterval(updateCountdown, 1000);
     const btnText = submitBtn.querySelector('span');
 
     form.addEventListener('submit', async function(e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    // Валидация формы
-    const name = document.getElementById('guestName').value.trim();
-    const attendance = document.querySelector('input[name="attendance"]:checked');
-    const message = document.getElementById('guestMessage').value.trim();
+        // Валидация формы
+        const name = document.getElementById('guestName').value.trim();
+        const attendance = document.querySelector('input[name="attendance"]:checked');
+        const message = document.getElementById('guestMessage').value.trim();
 
-    if (!name) {
-    showMessage('Пожалуйста, введите ваше имя', 'error');
-    return;
-}
+        if (!name) {
+            showMessage('Пожалуйста, введите ваше имя', 'error');
+            return;
+        }
 
-    if (!attendance) {
-    showMessage('Пожалуйста, выберите вариант ответа', 'error');
-    return;
-}
+        if (!attendance) {
+            showMessage('Пожалуйста, выберите вариант ответа', 'error');
+            return;
+        }
 
-    // Показать loader
-    submitBtn.disabled = true;
-    btnText.style.opacity = '0.5';
-    loader.classList.add('active');
+        // Показать loader
+        submitBtn.disabled = true;
+        btnText.style.opacity = '0.5';
+        loader.classList.add('active');
 
-    try {
-    // Формируем сообщение для Telegram
-    const text = `
+        try {
+            // Формируем сообщение для Telegram
+            const text = `
 🎉 *Новый ответ на приглашение!*
 
 👤 *Имя:* ${name}
@@ -200,96 +200,54 @@ ${message ? `💬 *Комментарий:* ${message}` : '💬 *Коммент�
 📅 *Дата ответа:* ${new Date().toLocaleDateString('ru-RU')}
       `;
 
-    // Отправка в Telegram
-    await sendToTelegram(text);
+            // Отправка в Telegram
+            await sendToTelegram(text);
 
-    // Показываем успешное сообщение
-    showMessage('Спасибо! Ваш ответ успешно отправлен.', 'success');
-    form.reset();
+            // Показываем успешное сообщение
+            showMessage('Спасибо! Ваш ответ успешно отправлен.', 'success');
+            form.reset();
 
-} catch (error) {
-    console.error('Ошибка отправки:', error);
-    showMessage('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.', 'error');
-} finally {
-    // Скрыть loader
-    submitBtn.disabled = false;
-    btnText.style.opacity = '1';
-    loader.classList.remove('active');
-}
-});
-
-    async function sendToTelegram(text) {
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-    const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json',
-},
-    body: JSON.stringify({
-    chat_id: TELEGRAM_CHAT_ID,
-    text: text,
-    parse_mode: 'Markdown',
-    disable_notification: false
-})
-});
-
-    if (!response.ok) {
-    throw new Error('Ошибка отправки в Telegram');
-}
-
-    return await response.json();
-}
-
-    function showMessage(text, type) {
-    formMessage.textContent = text;
-    formMessage.className = `form-message ${type}`;
-
-    // Автоматически скрыть сообщение через 5 секунд
-    setTimeout(() => {
-    formMessage.style.display = 'none';
-}, 5000);
-}
-});
-
-
-
-
-
-
-
-
-// ==================== АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ====================
-
-// Функция для проверки видимости элемента
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85
-    );
-}
-
-// Функция для добавления анимации при скролле
-function animateOnScroll() {
-    const sections = document.querySelectorAll('.countdown-container, .dateAndPlace, .rsvp-section');
-
-    sections.forEach(section => {
-        if (isElementInViewport(section)) {
-            section.classList.add('visible');
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            showMessage('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.', 'error');
+        } finally {
+            // Скрыть loader
+            submitBtn.disabled = false;
+            btnText.style.opacity = '1';
+            loader.classList.remove('active');
         }
     });
-}
 
-// Инициализация при загрузке
-document.addEventListener('DOMContentLoaded', function() {
-    // Даем время на рендеринг
-    setTimeout(() => {
-        animateOnScroll();
+    async function sendToTelegram(text) {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-        // Добавляем слушатель скролла
-        window.addEventListener('scroll', animateOnScroll);
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: text,
+                parse_mode: 'Markdown',
+                disable_notification: false
+            })
+        });
 
-        // Также проверяем при ресайзе
-        window.addEventListener('resize', animateOnScroll);
-    }, 500);
+        if (!response.ok) {
+            throw new Error('Ошибка отправки в Telegram');
+        }
+
+        return await response.json();
+    }
+
+    function showMessage(text, type) {
+        formMessage.textContent = text;
+        formMessage.className = `form-message ${type}`;
+
+        // Автоматически скрыть сообщение через 5 секунд
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    }
 });
