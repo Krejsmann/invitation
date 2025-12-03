@@ -703,6 +703,7 @@ body:has(.envelope-background:not(.hidden)) {
   width: 50px;
   cursor: pointer;
   animation: sc 1.5s ease-in-out infinite;
+  z-index: 9;
 }
 
 .music-btn img {
