@@ -32,6 +32,16 @@ body {
   background-color: #5f0505;
 }
 
+/* В начало вашего CSS добавьте: */
+html.envelope-mode {
+  overflow: hidden;
+  height: 100%;
+}
+
+html:not(.envelope-mode) {
+  overflow-y: auto;
+}
+
 .envelope-background {
   position: fixed;
   top: 0;
@@ -1284,4 +1294,38 @@ iframe{
     padding: 15px;
     font-size: 1.1em;
   }
+}
+
+
+
+
+
+
+
+
+/* Анимация появления секций при скролле */
+.countdown-container,
+.dateAndPlace,
+.rsvp-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.countdown-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.dateAndPlace.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.rsvp-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
 }

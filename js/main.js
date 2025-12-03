@@ -251,3 +251,45 @@ ${message ? `💬 *Комментарий:* ${message}` : '💬 *Коммент�
 }, 5000);
 }
 });
+
+
+
+
+
+
+
+
+// ==================== АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ====================
+
+// Функция для проверки видимости элемента
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85
+    );
+}
+
+// Функция для добавления анимации при скролле
+function animateOnScroll() {
+    const sections = document.querySelectorAll('.countdown-container, .dateAndPlace, .rsvp-section');
+
+    sections.forEach(section => {
+        if (isElementInViewport(section)) {
+            section.classList.add('visible');
+        }
+    });
+}
+
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    // Даем время на рендеринг
+    setTimeout(() => {
+        animateOnScroll();
+
+        // Добавляем слушатель скролла
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Также проверяем при ресайзе
+        window.addEventListener('resize', animateOnScroll);
+    }, 500);
+});
