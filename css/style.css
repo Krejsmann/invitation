@@ -14,6 +14,7 @@ body {
 
 .main-content {
   visibility: hidden;
+  display:none;
   transform: translateX(-100%);
 
   width: 100%;
@@ -27,6 +28,7 @@ body {
 }
 
 .main-content.active {
+  display: block;
   visibility: visible;
   transform: translateX(0);
   background-color: #5f0505;
@@ -48,8 +50,8 @@ html:not(.envelope-mode) {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
   background:
     radial-gradient(circle at 20% 30%, #8B0000 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, #FF0000 0%, transparent 50%),
